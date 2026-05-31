@@ -24,7 +24,9 @@ This repository showcases an architectural evolution on the **Fashion-MNIST** da
 ### 📊 Dataset Insights
 Before modeling, a strict exploratory data analysis was conducted to ensure class balance and structural clarity across the train/test splits.
 
-![](images/image1.png)
+<p align="center">
+  <img src="images/image1.png" width="85%" alt="Fashion-MNIST Class Distribution Comparison">
+</p>
 
 #### Random Data Visualization
 | Random Sample Images from Fashion-MNIST |
@@ -59,20 +61,41 @@ The Ultimate ResNet heavily mitigates the historic *Shirt vs. T-shirt* confusion
 
 #### Champion Generation Elite Profile (Ultimate ResNet)
 <p align="center">
-  <img src="images/image8.png" width="70%" alt="Ultimate Pre-Act ResNet Confusion Matrix">
+  <img src="images/image8.png" width="65%" alt="Ultimate Pre-Act ResNet Confusion Matrix">
 </p>
 
 ### 🧠 Stress-Testing & Network Pruning Robustness
 We subjected the networks to a dynamic pruning stress test by computing the Pearson Correlation Matrix across the final hidden representations and zeroing out the weights of highly redundant channels/neurons.
 
 #### 1. Feature Representation Alignment (Correlation Matrices)
-![](images/image6.png) ![](images/image9.jpg)
+
+<p align="center">
+  <img src="images/image6.png" width="60%" alt="MLP Hidden Layer Correlation">
+  <br>
+  <em>Figure 1: High multi-collinearity and parameter redundancy observed within the hidden representations of the baseline MLP model.</em>
+</p>
+
+<p align="center">
+  <img src="images/image9.jpg" width="60%" alt="Ultimate ResNet Feature Correlation">
+  <br>
+  <em>Figure 2: Highly decoupled, orthogonal, and sparse latent feature channels enforced by the Ultimate Pre-Act ResNet + SE blocks.</em>
+</p>
 
 #### 2. Network Breakdown Curves (Pruning Sensitivity)
 * **Pyramidal MLP (64 Neurons):** Extremely fragile. Pruning 31.2% of its capacity led to severe decay, and hitting 78.1% caused a **Catastrophic Breakdown** (`images/image7.png`).
 * **Ultimate ResNet (512 Channels):** Demonstrates flawless decentralized intelligence. Removing up to **100 feature channels (19.5% of the entire layer) resulted in 0.00% accuracy drops**, holding firmly at 95.14% (`images/image10.png`).
 
-![](images/image7.png) ![](images/image10.png)
+<p align="center">
+  <img src="images/image7.png" width="60%" alt="MLP Pruning Breakdown Curve">
+  <br>
+  <em>Figure 3: Severe performance collapse curve of the MLP network under random neuron elimination.</em>
+</p>
+
+<p align="center">
+  <img src="images/image10.png" width="60%" alt="Ultimate ResNet Pruning Breakdown Curve">
+  <br>
+  <em>Figure 4: Exceptional, rock-solid structural robustness of the Pre-Act ResNet model under aggressive feature channel pruning.</em>
+</p>
 
 ---
 
@@ -93,7 +116,9 @@ We subjected the networks to a dynamic pruning stress test by computing the Pear
 ### 📊 تحلیل اولیه مجموعه داده‌ها
 پیش از مدل‌سازی، یک ارزیابی آماری دقیق روی داده‌ها انجام شد تا از تعادل کلاس‌ها و شفافیت ساختاری میان داده‌های آموزش و تست اطمینان حاصل شود.
 
-![](images/image1.png)
+<p align="center">
+  <img src="images/image1.png" width="85%" alt="بررسی توزیع کلاس‌های دیتاست">
+</p>
 
 #### تصویرسازی تصادفی داده‌ها
 | نمونه تصاویر تصادفی فشن ام‌نیست |
@@ -106,46 +131,4 @@ We subjected the networks to a dynamic pruning stress test by computing the Pear
 | نسل معماری | نام مدل | دقت تست (Accuracy) | میزان لوس تست | شاخص Macro F1 | دینامیک آموزش |
 | :--- | :--- | :---: | :---: | :---: | :--- |
 | **نسل ۱: مدل مبنا** | Enhanced Lightweight MLP | `87.76%` | `0.3397` | `0.8779` | توقف زودرس در اپاک ۱۷ |
-| **نسل ۱: مدل مبنا** | Enhanced Pyramidal MLP | `89.30%` | `0.3037` | `0.8929` | توقف زودرس در اپاک ۲۲ |
-| **نسل ۲: سی‌ان‌ان عمیق** | **Ultimate Pre-Act ResNet + SE** | **`95.20%`** | `0.4428` | **`0.9519`** | بهینه‌سازی کامل (۱۰۰ اپاک) |
-
-### 📈 فرآیند همگرایی و دینامیک آموزش
-نمودارهای زیر نشان می‌دهند که چگونه تکنیک‌های تنظیم مانند Batch Normalization، Dropout و Early Stopping مدل‌های نسل اول (MLP) را از اورفیتینگ شدید نجات داده‌اند:
-
-![](images/image3.png) ![](images/image4.png)
-
-### 🛠️ ستون‌های فنی و ساختاری مدل پیشرفته پیشنهادی
-1. **ساختار پیش‌فعال‌سازی (Pre-Activation):** جابه‌جایی BatchNorm و ReLU به قبل از لایه‌های کانولوشن جهت باز کردن شاهراه انتقال گرادیان در لایه‌های بسیار عمیق.
-2. **مکانیزم توجه کانالی (SE Attention):** ایجاد تحلیل ماتریسی روی کانال‌ها برای وزن‌دهی پویا به ویژگی‌های کلیدی لباس‌ها (مانند فرم یقه و آستین).
-3. **عمق تصادفی (Stochastic Depth / DropPath):** غیرفعال کردن تصادفی بلوک‌های رزونانسی در طول آموزش جهت جلوگیری سخت‌گیرانه از حفظ کردن داده‌ها.
-4. **رژیم بهینه‌سازی نخبه:** استفاده از بهینه‌ساز `AdamW` همراه با زمان‌بندی کسینوسی ضریب یادگیری و اعمال صاف‌سازی برچسب‌ها (`Label Smoothing = 0.05`).
-
-### 📋 ماتریس تداخل و تحلیل خطاها
-مدل رزنت پیشنهادی به شدت چالش تاریخی تفکیک *پیراهن از تی‌شرت* را کاهش داده و بر روی ساختارهای متمایز به دقت ۱۰۰٪ نزدیک شده است:
-
-#### ماتریس تداخل مدل‌های نسل اول (MLPs)
-![](images/image5.png)
-
-#### ماتریس تداخل مدل قهرمان (Ultimate ResNet)
-<p align="center">
-  <img src="images/image8.png" width="70%" alt="Ultimate Pre-Act ResNet Confusion Matrix">
-</p>
-
-### 🧠 تست استرس و تحلیل هرس پویا (Pruning)
-شبکه‌ها با حذف تعمدی نورون‌ها و کانال‌هایی که دارای همبستگی و شباهت بالایی (Pearson Correlation) بودند، تحت تست استرس قرار گرفتند.
-
-#### ۱. چیدمان و همبستگی ویژگی‌ها (ماتریس همبستگی لایه آخر)
-![](images/image6.png) ![](images/image9.jpg)
-
-#### ۲. منحنی فروپاشی شبکه در اثر هرس کانال‌ها
-* **مدل هرمی MLP (دارای ۶۴ نورون):** بسیار آسیب‌پذیر. حذف ۳۱.۲٪ از توان آن باعث افت شدید شد و در مرز ۷۸.۱٪ هرس، مدل دچار **فروپاشی کامل فاجعه‌بار** شد (`images/image7.png`).
-* **مدل پیشنهادی رزنت (دارای ۵۱۲ کانال):** نمایش خیره‌کننده از هوش غیرمتمرکز. **حذف ۱۰۰ کانال ویژگی (معادل ۱۹.۵٪ کل لایه) هیچ افتی در دقت ایجاد نکرد** و مدل روی ۹۵.۱۴٪ ثابت ماند. حتی با **حذف بیش از نیمی از شبکه (۵۸.۶٪ هرس)**، دقت عالی ۹۳.۸۹٪ ثبت شد که از نسخه دست‌نخورده MLP نیز بالاتر است (`images/image10.png`).
-
-![](images/image7.png) ![](images/image10.png)
-
----
-
-## 🎯 Final Verdict / نتیجه‌گیری نهایی
-This project proves that advanced architectures like **Pre-Act ResNet + SE** efficiently shatter the performance limitations of traditional linear networks, locking an elite **95.20% accuracy**. The extensive pruning benchmarks mathematically validate that the champion model yields an ultra-robust, decentralized representation—making it exceptionally qualified for high-compression, hardware-constrained industrial deployment.
-
-این پروژه اثبات می‌کند که بهره‌گیری از معماری‌های مدرن نظیر رزنت پیش‌فعال همراه با بلوک‌های توجه کانالی، سقف شیشه‌ای شبکه‌های خطی را شکسته و دقت **۹۵.۲۰٪** را ثبت می‌کند. بنچمارک‌های هرس به وضوح و با استناد به ریاضیات نشان دادند که مدل پیشنهادی دانش را به صورت کاملاً توزیع‌شده یاد می‌گیرد؛ ویژگی ممتازی که این مدل را برای فشرده‌سازی و استقرار روی سخت‌افزارهای محدود صنعتی کاملاً آماده می‌سازد.
+| **نسل ۱: مدل مبنا** | Enhanced Pyramidal MLP | `89.30%` | `0.3037` | `0.8
