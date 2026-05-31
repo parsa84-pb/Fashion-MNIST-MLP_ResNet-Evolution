@@ -1,10 +1,19 @@
 # 👕 Fashion-MNIST Evolution: From Deep MLPs to Ultimate Pre-Act ResNet + SE
 
-This repository showcases an architectural evolution on the **Fashion-MNIST** dataset. It documents the journey from optimizing traditional multi-layer perceptrons (MLPs) to engineering an elite, highly robust **Pre-Activation ResNet** combined with **Squeeze-and-Excitation (SE)** attention mechanisms, pushing the accuracy boundaries up to **95.20%**.
+<p align="center">
+  <a href="#english-version">🌐 English Version</a> •
+  <a href="#فارسی">🌍 نسخه فارسی</a>
+</p>
 
 ---
 
-## 🚀 CRITICAL RUNTIME CONFIGURATION (READ BEFORE RUNNING)
+<div id="english-version"></div>
+
+## 🇬🇧 English Version
+
+This repository showcases an architectural evolution on the **Fashion-MNIST** dataset. It documents the journey from optimizing traditional multi-layer perceptrons (MLPs) to engineering an elite, highly robust **Pre-Activation ResNet** combined with **Squeeze-and-Excitation (SE)** attention mechanisms, pushing the accuracy boundaries up to **95.20%**.
+
+### 🚀 CRITICAL RUNTIME CONFIGURATION (READ BEFORE RUNNING)
 
 > ⚠️ **IMPORTANT NOTE FOR EXECUTION**
 > Inside the very first code block, there is a global control variable named `train`. 
@@ -12,26 +21,19 @@ This repository showcases an architectural evolution on the **Fashion-MNIST** da
 > * **If `train = True`:** The entire training pipeline executes, generating loss/accuracy curves, and optimizing weights from scratch.
 > * **If `train = False`:** The system **skips all training and validation learning blocks**, bypasses epoch visualizations, and directly deploys the evaluation engine. It will automatically load the pre-trained champion weights (`ultimate_fashion_mnist_checkpoint.pt`) from the root folder to run immediate test benchmarks, confusion matrices, and dynamic pruning stress tests.
 
----
-
-## 📊 Dataset Insights
-
+### 📊 Dataset Insights
 Before modeling, a strict exploratory data analysis was conducted to ensure class balance and structural clarity across the train/test splits.
 
 <p align="center">
   <img src="images/image1.png" width="90%" alt="Fashion-MNIST Class Distribution Comparison">
 </p>
 
-### Random Data Visualization
-Below are random visual samples directly fetched from the dataset pipelines, displaying the various fashion categories with their respective index tags:
+#### Random Data Visualization
 <p align="center">
   <img src="images/image2.png" width="90%" alt="Random Sample Images from Fashion-MNIST">
 </p>
 
----
-
-## 📊 Architectural & Performance Benchmark
-
+### 📊 Architectural & Performance Benchmark
 Below is the definitive experimental benchmark comparing both generations of neural architectures evaluated on 10,000 unseen test images:
 
 | Architecture Generation | Model Name | Test Accuracy | Test Loss | Macro F1-Score | Training Dynamics |
@@ -40,68 +42,118 @@ Below is the definitive experimental benchmark comparing both generations of neu
 | **Gen 1: Baseline MLP** | Enhanced Pyramidal MLP | `89.30%` | `0.3037` | `0.8929` | Early Stopped at Epoch 22 |
 | **Gen 2: Deep CNN (Ours)** | **Ultimate Pre-Act ResNet + SE** | **`95.20%`** | `0.4428` | **`0.9519`** | Fully Optimized (100 Epochs) |
 
----
-
-## 📈 Training Dynamics & Optimization Trajectory
-
-### 1. Baseline MLP Multi-Stage Evolution
+### 📈 Training Dynamics & Optimization Trajectory
 The charts below show the progressive learning behaviors, highlighting how Batch Normalization, Dropout, and Early Stopping rescued the Pyramidal and Lightweight MLPs from severe overfitting:
 
-<p align="center">
-  <img src="images/image3.png" width="49%" alt="Loss Convergence Comparison">
-  <img src="images/image4.png" width="49%" alt="Validation Generalization Benchmark">
-</p>
+| Loss Convergence Comparison | Validation Generalization Benchmark |
+| :---: | :---: |
+| <img src="images/image3.png" width="100%"> | <img src="images/image4.png" width="100%"> |
 
----
-
-## 🛠️ Key Architectural Pillars of the Ultimate Model
-
-The champion model bypasses the classic MLP limitations by integrating four state-of-the-art deep learning paradigms:
+### 🛠️ Key Architectural Pillars of the Ultimate Model
 1. **Pre-Activation Topology:** Shifts BatchNorm and ReLU prior to convolution layers, ensuring an unobstructed gradient highway across extreme depths.
-2. **Squeeze-and-Excitation (SE) Attention:** Introduces channel-wise cross-examination, allowing the network to dynamically scale features based on critical item details (e.g., collars, sleeve borders).
-3. **Stochastic Depth (DropPath):** Randomly deactivates residual blocks during training to enforce fierce regularization and prevent over-parameterization.
+2. **Squeeze-and-Excitation (SE) Attention:** Introduces channel-wise cross-examination, allowing the network to dynamically scale features based on critical item details.
+3. **Stochastic Depth (DropPath):** Randomly deactivates residual blocks during training to enforce fierce regularization.
 4. **Elite Optimization Regime:** Fueled by `AdamW`, scheduled via a smooth `Cosine Annealing LR`, and supervised using `Label Smoothing (0.05)`.
 
----
+### 📋 Confusion Matrix & Error Analysis
+The Ultimate ResNet heavily mitigates the historic *Shirt vs. T-shirt* confusion while locking absolute predictions on high-contrast structures:
 
-## 📋 Confusion Matrix & Error Analysis
+| Baseline Generation Error Profiles (MLPs) | Champion Generation Elite Profile (Ultimate ResNet) |
+| :---: | :---: |
+| <img src="images/image5.png" width="100%"> | <img src="images/image8.png" width="85%"> |
 
-The definitive performance shift is clearly visible when comparing the error distributions. The Ultimate ResNet heavily mitigates the historic *Shirt vs. T-shirt* confusion while locking absolute predictions on high-contrast structures:
-
-### Baseline Generation Error Profiles
-<p align="center">
-  <img src="images/image5.png" width="95%" alt="Final Confusion Matrix Comparison on Test Set">
-</p>
-
-### Champion Generation Elite Profile
-<p align="center">
-  <img src="images/image7.png" width="65%" alt="Ultimate Pre-Act ResNet Confusion Matrix">
-</p>
-
----
-
-## 🧠 Stress-Testing & Network Pruning Robustness
-
+### 🧠 Stress-Testing & Network Pruning Robustness
 We subjected the networks to a dynamic pruning stress test by computing the Pearson Correlation Matrix across the final hidden representations and zeroing out the weights of highly redundant channels/neurons.
 
-### 1. Feature Representation Alignment (Correlation Matrices)
-The correlation layouts reveal how dense and hyper-dependent the MLP representation layers are versus the sparse, orthogonal, and beautifully decoupled channel fields of the ResNet:
+#### 1. Feature Representation Alignment (Correlation Matrices)
+| MLP Hidden Layer Correlation (64 Neurons) | Ultimate ResNet Feature Correlation (512 Channels) |
+| :---: | :---: |
+| <img src="images/image6.png" width="100%"> | <img src="images/image9.jpg" width="100%"> |
 
-<p align="center">
-  <img src="images/image6.png" width="48%" alt="Neuron Activation Correlation Matrix - MLP">
-  <img src="images/image8.png" width="48%" alt="Ultimate ResNet Feature Activation Correlation Matrix">
-</p>
+#### 2. Network Breakdown Curves (Pruning Sensitivity)
+* **Pyramidal MLP (64 Neurons):** Extremely fragile. Pruning 31.2% of its capacity led to severe decay, and hitting 78.1% caused a **Catastrophic Breakdown** (`images/image7.png`).
+* **Ultimate ResNet (512 Channels):** Demonstrates flawless decentralized intelligence. Removing up to **100 feature channels (19.5% of the entire layer) resulted in 0.00% accuracy drops**, holding firmly at 95.14% (`images/image10.png`).
 
-### 2. Network Breakdown Curves (Pruning Sensitivity)
-* **Pyramidal MLP (64 Neurons):** Extremely fragile. Pruning 31.2% of its capacity led to severe decay, and hitting 78.1% caused a **Catastrophic Breakdown**, collapsing the model back to random guessing patterns (`image9.jpg`).
-* **Ultimate ResNet (512 Channels):** Demonstrates flawless decentralized intelligence. Removing up to **100 feature channels (19.5% of the entire layer) resulted in 0.00% accuracy drops**, holding firmly at 95.14%. Even when **more than half the network was completely muted (58.6% pruned)**, it still delivered **93.89% accuracy**, outperforming a fully intact, unpruned MLP (`image10.png`).
-
-<p align="center">
-  <img src="images/image9.jpg" width="49%" alt="Continuous Network Breakdown Curve: MLP Sensitivity">
-  <img src="images/image10.png" width="49%" alt="Ultimate Pre-Act ResNet Breakdown Curve">
-</p>
+| MLP Breakdown Curve | Ultimate ResNet Breakdown Curve |
+| :---: | :---: |
+| <img src="images/image7.png" width="100%"> | <img src="images/image10.png" width="100%"> |
 
 ---
 
-## 🎯 Final Verdict
-This project proves that implementing architectural mechanisms like **Pre-Act ResNet + SE Blocks** smashes the glass ceiling of linear networks ($95.20\%$ accuracy). Pruning evaluations confirm that the proposed champion architecture is not just highly accurate, but showcases an incredibly robust, distributed representation system—making it perfectly primed for hardware-constrained deployments via aggressive model compression.
+<div id="فارسی"></div>
+
+## 🌍 نسخه فارسی
+
+این مخزن یک تحول معماری را بر روی مجموعه داده **Fashion-MNIST** به نمایش می‌گذارد. فرآیند توسعه از بهینه‌سازی شبکه‌های پرسپترون چندلایه سنتی (MLP) آغاز شده و به طراحی یک مدل نخبه و بسیار مستحکم **Pre-Activation ResNet** همراه با مکانیزم توجه **Squeeze-and-Excitation (SE)** منتهی شده است که دقت تست را به مرز **۹۵.۲۰٪** می‌رساند.
+
+### 🚀 تنظیمات حیاتی زمان اجرا (قبل از اجرا بخوانید)
+
+> ⚠️ **نکته بسیار مهم برای اجرای کد**
+> در اولین بلوک کد، یک متغیر کنترل سراسری به نام `train` تعریف شده است:
+>
+> * **در صورت `train = True`:** کل فرآیند آموزش از ابتدا اجرا شده، نمودارهای لوس و دقت تولید می‌شوند و وزن‌ها بهینه‌سازی خواهند شد.
+> * **در صورت `train = False`:** سیستم **تمامی بلوک‌های یادگیری و آموزش را نادیده می‌گیرد**، از تصویرسازی اپاک‌ها عبور کرده و مستقیماً موتور ارزیابی را فعال می‌کند. سیستم به طور خودکار وزن‌های از پیش آموزش‌دیده قهرمان (`ultimate_fashion_mnist_checkpoint.pt`) را از پوشه اصلی لود می‌کند تا تست بفرمارک، ماتریس تداخل و تست استرس هرس پویا را فوراً اجرا کند.
+
+### 📊 تحلیل اولیه مجموعه داده‌ها
+پیش از مدل‌سازی، یک ارزیابی آماری دقیق روی داده‌ها انجام شد تا از تعادل کلاس‌ها و شفافیت ساختاری میان داده‌های آموزش و تست اطمینان حاصل شود.
+
+<p align="center">
+  <img src="images/image1.png" width="90%" alt="بررسی توزیع کلاس‌های دیتاست">
+</p>
+
+#### تصویرسازی تصادفی داده‌ها
+<p align="center">
+  <img src="images/image2.png" width="90%" alt="نمونه تصاویر تصادفی فشن ام‌نیست">
+</p>
+
+### 📊 جدول مقایسه عملکرد و بنچمارک معماری‌ها
+جدول زیر بنچمارک تجربی و نهایی عملکرد دو نسل از معماری‌های عصبی را روی ۱۰,۰۰۰ تصویر تست دیده نشده نشان می‌دهد:
+
+| نسل معماری | نام مدل | دقت تست (Accuracy) | میزان لوس تست | شاخص Macro F1 | دینامیک آموزش |
+| :--- | :--- | :---: | :---: | :---: | :--- |
+| **نسل ۱: مدل مبنا** | Enhanced Lightweight MLP | `87.76%` | `0.3397` | `0.8779` | توقف زودرس در اپاک ۱۷ |
+| **نسل ۱: مدل مبنا** | Enhanced Pyramidal MLP | `89.30%` | `0.3037` | `0.8929` | توقف زودرس در اپاک ۲۲ |
+| **نسل ۲: سی‌ان‌ان عمیق** | **Ultimate Pre-Act ResNet + SE** | **`95.20%`** | `0.4428` | **`0.9519`** | بهینه‌سازی کامل (۱۰۰ اپاک) |
+
+### 📈 فرآیند همگرایی و دینامیک آموزش
+نمودارهای زیر نشان می‌دهند که چگونه تکنیک‌های تنظیم مانند Batch Normalization، Dropout و Early Stopping مدل‌های نسل اول (MLP) را از اورفیتینگ شدید نجات داده‌اند:
+
+| نمودار همگرایی لوس (Loss) | بنچمارک تعمیم‌پذیری روی داده‌های ولیدیشن |
+| :---: | :---: |
+| <img src="images/image3.png" width="100%"> | <img src="images/image4.png" width="100%"> |
+
+### 🛠️ ستون‌های فنی و ساختاری مدل پیشرفته پیشنهادی
+1. **ساختار پیش‌فعال‌سازی (Pre-Activation):** جابه‌جایی BatchNorm و ReLU به قبل از لایه‌های کانولوشن جهت باز کردن شاهراه انتقال گرادیان در لایه‌های بسیار عمیق.
+2. **مکانیزم توجه کانالی (SE Attention):** ایجاد تحلیل ماتریسی روی کانال‌ها برای وزن‌دهی پویا به ویژگی‌های کلیدی لباس‌ها (مانند فرم یقه و آستین).
+3. **عمق تصادفی (Stochastic Depth / DropPath):** غیرفعال کردن تصادفی بلوک‌های رزونانسی در طول آموزش جهت جلوگیری سخت‌گیرانه از حفظ کردن داده‌ها.
+4. **رژیم بهینه‌سازی نخبه:** استفاده از بهینه‌ساز `AdamW` همراه با زمان‌بندی کسینوسی ضریب یادگیری و اعمال صاف‌سازی برچسب‌ها (`Label Smoothing = 0.05`).
+
+### 📋 ماتریس تداخل و تحلیل خطاها
+مدل رزنت پیشنهادی به شدت چالش تاریخی تفکیک *پیراهن از تی‌شرت* را کاهش داده و بر روی ساختارهای متمایز به دقت ۱۰۰٪ نزدیک شده است:
+
+| ماتریس تداخل مدل‌های نسل اول (MLPs) | ماتریس تداخل مدل قهرمان (Ultimate ResNet) |
+| :---: | :---: |
+| <img src="images/image5.png" width="100%"> | <img src="images/image8.png" width="85%"> |
+
+### 🧠 تست استرس و تحلیل هرس پویا (Pruning)
+شبکه‌ها با حذف تعمدی نورون‌ها و کانال‌هایی که دارای همبستگی و شباهت بالایی (Pearson Correlation) بودند، تحت تست استرس قرار گرفتند.
+
+#### ۱. چیدمان و همبستگی ویژگی‌ها (ماتریس همبستگی لایه آخر)
+| ماتریس همبستگی نورون‌ها در مدل MLP | ماتریس همبستگی کانال‌ها در مدل Ultimate ResNet |
+| :---: | :---: |
+| <img src="images/image6.png" width="100%"> | <img src="images/image9.jpg" width="100%"> |
+
+#### ۲. منحنی فروپاشی شبکه در اثر هرس کانال‌ها
+* **مدل هرمی MLP (دارای ۶۴ نورون):** بسیار آسیب‌پذیر. حذف ۳۱.۲٪ از توان آن باعث افت شدید شد و در مرز ۷۸.۱٪ هرس، مدل دچار **فروپاشی کامل فاجعه‌بار** شد (`images/image7.png`).
+* **مدل پیشنهادی رزنت (دارای ۵۱۲ کانال):** نمایش خیره‌کننده از هوش غیرمتمرکز. **حذف ۱۰۰ کانال ویژگی (معادل ۱۹.۵٪ کل لایه) هیچ افتی در دقت ایجاد نکرد** و مدل روی ۹۵.۱۴٪ ثابت ماند. حتی با **حذف بیش از نیمی از شبکه (۵۸.۶٪ هرس)**، دقت عالی ۹۳.۸۹٪ ثبت شد که از نسخه دست‌نخورده MLP نیز بالاتر است (`images/image10.png`).
+
+| منحنی هرس مدل MLP | منحنی هرس مدل Ultimate ResNet |
+| :---: | :---: |
+| <img src="images/image7.png" width="100%"> | <img src="images/image10.png" width="100%"> |
+
+---
+
+## 🎯 Final Verdict / نتیجه‌گیری نهایی
+This project proves that advanced architectures like **Pre-Act ResNet + SE** efficiently shatter the performance limitations of traditional linear networks, locking an elite **95.20% accuracy**. The extensive pruning benchmarks mathematically validate that the champion model yields an ultra-robust, decentralized representation—making it exceptionally qualified for high-compression, hardware-constrained industrial deployment.
+
+این پروژه اثبات می‌کند که بهره‌گیری از معماری‌های مدرن نظیر رزنت پیش‌فعال همراه با بلوک‌های توجه کانالی، سقف شیشه‌ای شبکه‌های خطی را شکسته و دقت **۹۵.۲۰٪** را ثبت می‌کند. بنچمارک‌های هرس به وضوح و با استناد به ریاضیات نشان دادند که مدل پیشنهادی دانش را به صورت کاملاً توزیع‌شده یاد می‌گیرد؛ ویژگی ممتازی که این مدل را برای فشرده‌سازی و استقرار روی سخت‌افزارهای محدود صنعتی کاملاً آماده می‌سازد.
