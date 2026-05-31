@@ -45,9 +45,13 @@ Below is the definitive experimental benchmark comparing both generations of neu
 ### 📈 Training Dynamics & Optimization Trajectory
 The charts below show the progressive learning behaviors, highlighting how Batch Normalization, Dropout, and Early Stopping rescued the Pyramidal and Lightweight MLPs from severe overfitting:
 
-| Loss Convergence Comparison | Validation Generalization Benchmark |
-| :---: | :---: |
-| <img src="images/image3.png" width="100%"> | <img src="images/image4.png" width="100%"> |
+<p align="center">
+  <img src="images/image3.png" width="85%" alt="Loss Convergence Comparison">
+  <br><br>
+  <img src="images/image4.png" width="85%" alt="Validation Generalization Benchmark">
+</p>
+
+---
 
 ### 🛠️ Key Architectural Pillars of the Ultimate Model
 1. **Pre-Activation Topology:** Shifts BatchNorm and ReLU prior to convolution layers, ensuring an unobstructed gradient highway across extreme depths.
@@ -58,25 +62,46 @@ The charts below show the progressive learning behaviors, highlighting how Batch
 ### 📋 Confusion Matrix & Error Analysis
 The Ultimate ResNet heavily mitigates the historic *Shirt vs. T-shirt* confusion while locking absolute predictions on high-contrast structures:
 
-| Baseline Generation Error Profiles (MLPs) | Champion Generation Elite Profile (Ultimate ResNet) |
-| :---: | :---: |
-| <img src="images/image5.png" width="100%"> | <img src="images/image8.png" width="85%"> |
+#### Baseline Generation Error Profiles (MLPs)
+<p align="center">
+  <img src="images/image5.png" width="90%" alt="Baseline MLP Confusion Matrix">
+</p>
+
+#### Champion Generation Elite Profile (Ultimate ResNet)
+<p align="center">
+  <img src="images/image8.png" width="85%" alt="Ultimate Pre-Act ResNet Confusion Matrix">
+</p>
+
+---
 
 ### 🧠 Stress-Testing & Network Pruning Robustness
 We subjected the networks to a dynamic pruning stress test by computing the Pearson Correlation Matrix across the final hidden representations and zeroing out the weights of highly redundant channels/neurons.
 
 #### 1. Feature Representation Alignment (Correlation Matrices)
-| MLP Hidden Layer Correlation (64 Neurons) | Ultimate ResNet Feature Correlation (512 Channels) |
-| :---: | :---: |
-| <img src="images/image6.png" width="100%"> | <img src="images/image9.png" width="100%"> |
+
+**MLP Hidden Layer Correlation (64 Neurons)**
+<p align="center">
+  <img src="images/image6.png" width="85%" alt="MLP Hidden Layer Correlation">
+</p>
+
+**Ultimate ResNet Feature Correlation (512 Channels)**
+<p align="center">
+  <img src="images/image9.png" width="85%" alt="Ultimate ResNet Feature Correlation">
+</p>
 
 #### 2. Network Breakdown Curves (Pruning Sensitivity)
 * **Pyramidal MLP (64 Neurons):** Extremely fragile. Pruning 31.2% of its capacity led to severe decay, and hitting 78.1% caused a **Catastrophic Breakdown** (`images/image7.png`).
 * **Ultimate ResNet (512 Channels):** Demonstrates flawless decentralized intelligence. Removing up to **100 feature channels (19.5% of the entire layer) resulted in 0.00% accuracy drops**, holding firmly at 95.14% (`images/image10.png`).
 
-| MLP Breakdown Curve | Ultimate ResNet Breakdown Curve |
-| :---: | :---: |
-| <img src="images/image7.png" width="100%"> | <img src="images/image10.png" width="100%"> |
+**MLP Breakdown Curve**
+<p align="center">
+  <img src="images/image7.png" width="85%" alt="MLP Pruning Breakdown Curve">
+</p>
+
+**Ultimate ResNet Breakdown Curve**
+<p align="center">
+  <img src="images/image10.png" width="85%" alt="Ultimate ResNet Pruning Breakdown Curve">
+</p>
 
 ---
 
@@ -118,38 +143,67 @@ We subjected the networks to a dynamic pruning stress test by computing the Pear
 ### 📈 فرآیند همگرایی و دینامیک آموزش
 نمودارهای زیر نشان می‌دهند که چگونه تکنیک‌های تنظیم مانند Batch Normalization، Dropout و Early Stopping مدل‌های نسل اول (MLP) را از اورفیتینگ شدید نجات داده‌اند:
 
-| نمودار همگرایی لوس (Loss) | بنچمارک تعمیم‌پذیری روی داده‌های ولیدیشن |
-| :---: | :---: |
-| <img src="images/image3.png" width="100%"> | <img src="images/image4.png" width="100%"> |
+**نمودار همگرایی لوس (Loss)**
+<p align="center">
+  <img src="images/image3.png" width="85%" alt="Loss Convergence">
+</p>
+
+**بنچمارک تعمیم‌پذیری روی داده‌های ولیدیشن**
+<p align="center">
+  <img src="images/image4.png" width="85%" alt="Validation Generalization">
+</p>
+
+---
 
 ### 🛠️ ستون‌های فنی و ساختاری مدل پیشرفته پیشنهادی
 1. **ساختار پیش‌فعال‌سازی (Pre-Activation):** جابه‌جایی BatchNorm و ReLU به قبل از لایه‌های کانولوشن جهت باز کردن شاهراه انتقال گرادیان در لایه‌های بسیار عمیق.
 2. **مکانیزم توجه کانالی (SE Attention):** ایجاد تحلیل ماتریسی روی کانال‌ها برای وزن‌دهی پویا به ویژگی‌های کلیدی لباس‌ها (مانند فرم یقه و آستین).
-3. **عمق تصادفی (Stochastic Depth / DropPath):** غیرفعال کردن تصادفی بلوک‌های رزونانسی در طول آموزش جهت جلوگیری سخت‌گیرانه از حفظ کردن داده‌ها.
+3. **عمق تصادفی (Stochastic Depth / DropPath):** غیرفعال کردن تصادفی بلوک‌های رزونانسیใน طول آموزش جهت جلوگیری سخت‌گیرانه از حفظ کردن داده‌ها.
 4. **رژیم بهینه‌سازی نخبه:** استفاده از بهینه‌ساز `AdamW` همراه با زمان‌بندی کسینوسی ضریب یادگیری و اعمال صاف‌سازی برچسب‌ها (`Label Smoothing = 0.05`).
 
 ### 📋 ماتریس تداخل و تحلیل خطاها
 مدل رزنت پیشنهادی به شدت چالش تاریخی تفکیک *پیراهن از تی‌شرت* را کاهش داده و بر روی ساختارهای متمایز به دقت ۱۰۰٪ نزدیک شده است:
 
-| ماتریس تداخل مدل‌های نسل اول (MLPs) | ماتریس تداخل مدل قهرمان (Ultimate ResNet) |
-| :---: | :---: |
-| <img src="images/image5.png" width="100%"> | <img src="images/image8.png" width="85%"> |
+#### ماتریس تداخل مدل‌های نسل اول (MLPs)
+<p align="center">
+  <img src="images/image5.png" width="90%" alt="Confusion Matrix MLPs">
+</p>
+
+#### ماتریس تداخل مدل قهرمان (Ultimate ResNet)
+<p align="center">
+  <img src="images/image8.png" width="85%" alt="Confusion Matrix ResNet">
+</p>
+
+---
 
 ### 🧠 تست استرس و تحلیل هرس پویا (Pruning)
 شبکه‌ها با حذف تعمدی نورون‌ها و کانال‌هایی که دارای همبستگی و شباهت بالایی (Pearson Correlation) بودند، تحت تست استرس قرار گرفتند.
 
 #### ۱. چیدمان و همبستگی ویژگی‌ها (ماتریس همبستگی لایه آخر)
-| ماتریس همبستگی نورون‌ها در مدل MLP | ماتریس همبستگی کانال‌ها در مدل Ultimate ResNet |
-| :---: | :---: |
-| <img src="images/image6.png" width="100%"> | <img src="images/image9.png" width="100%"> |
+
+**ماتریس همبستگی نورون‌ها در مدل MLP**
+<p align="center">
+  <img src="images/image6.png" width="85%" alt="MLP Correlation Matrix">
+</p>
+
+**ماتریس همبستگی کانال‌ها در مدل Ultimate ResNet**
+<p align="center">
+  <img src="images/image9.png" width="85%" alt="ResNet Correlation Matrix">
+</p>
 
 #### ۲. منحنی فروپاشی شبکه در اثر هرس کانال‌ها
 * **مدل هرمی MLP (دارای ۶۴ نورون):** بسیار آسیب‌پذیر. حذف ۳۱.۲٪ از توان آن باعث افت شدید شد و در مرز ۷۸.۱٪ هرس، مدل دچار **فروپاشی کامل فاجعه‌بار** شد (`images/image7.png`).
 * **مدل پیشنهادی رزنت (دارای ۵۱۲ کانال):** نمایش خیره‌کننده از هوش غیرمتمرکز. **حذف ۱۰۰ کانال ویژگی (معادل ۱۹.۵٪ کل لایه) هیچ افتی در دقت ایجاد نکرد** و مدل روی ۹۵.۱۴٪ ثابت ماند. حتی با **حذف بیش از نیمی از شبکه (۵۸.۶٪ هرس)**، دقت عالی ۹۳.۸۹٪ ثبت شد که از نسخه دست‌نخورده MLP نیز بالاتر است (`images/image10.png`).
 
-| منحنی هرس مدل MLP | منحنی هرس مدل Ultimate ResNet |
-| :---: | :---: |
-| <img src="images/image7.png" width="100%"> | <img src="images/image10.png" width="100%"> |
+**منحنی هرس مدل MLP**
+<p align="center">
+  <img src="images/image7.png" width="85%" alt="MLP Pruning Curve">
+</p>
+
+**منحنی هرس مدل Ultimate ResNet**
+<p align="center">
+  <img src="images/image10.png" width="85%" alt="ResNet Pruning Curve">
+</p>
 
 ---
 
