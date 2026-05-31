@@ -66,4 +66,42 @@ The champion model bypasses the classic MLP limitations by integrating four stat
 
 ## 📋 Confusion Matrix & Error Analysis
 
-The
+The definitive performance shift is clearly visible when comparing the error distributions. The Ultimate ResNet heavily mitigates the historic *Shirt vs. T-shirt* confusion while locking absolute predictions on high-contrast structures:
+
+### Baseline Generation Error Profiles
+<p align="center">
+  <img src="images/image5.png" width="95%" alt="Final Confusion Matrix Comparison on Test Set">
+</p>
+
+### Champion Generation Elite Profile
+<p align="center">
+  <img src="images/image7.png" width="65%" alt="Ultimate Pre-Act ResNet Confusion Matrix">
+</p>
+
+---
+
+## 🧠 Stress-Testing & Network Pruning Robustness
+
+We subjected the networks to a dynamic pruning stress test by computing the Pearson Correlation Matrix across the final hidden representations and zeroing out the weights of highly redundant channels/neurons.
+
+### 1. Feature Representation Alignment (Correlation Matrices)
+The correlation layouts reveal how dense and hyper-dependent the MLP representation layers are versus the sparse, orthogonal, and beautifully decoupled channel fields of the ResNet:
+
+<p align="center">
+  <img src="images/image6.png" width="48%" alt="Neuron Activation Correlation Matrix - MLP">
+  <img src="images/image8.png" width="48%" alt="Ultimate ResNet Feature Activation Correlation Matrix">
+</p>
+
+### 2. Network Breakdown Curves (Pruning Sensitivity)
+* **Pyramidal MLP (64 Neurons):** Extremely fragile. Pruning 31.2% of its capacity led to severe decay, and hitting 78.1% caused a **Catastrophic Breakdown**, collapsing the model back to random guessing patterns (`image9.jpg`).
+* **Ultimate ResNet (512 Channels):** Demonstrates flawless decentralized intelligence. Removing up to **100 feature channels (19.5% of the entire layer) resulted in 0.00% accuracy drops**, holding firmly at 95.14%. Even when **more than half the network was completely muted (58.6% pruned)**, it still delivered **93.89% accuracy**, outperforming a fully intact, unpruned MLP (`image10.png`).
+
+<p align="center">
+  <img src="images/image9.jpg" width="49%" alt="Continuous Network Breakdown Curve: MLP Sensitivity">
+  <img src="images/image10.png" width="49%" alt="Ultimate Pre-Act ResNet Breakdown Curve">
+</p>
+
+---
+
+## 🎯 Final Verdict
+This project proves that implementing architectural mechanisms like **Pre-Act ResNet + SE Blocks** smashes the glass ceiling of linear networks ($95.20\%$ accuracy). Pruning evaluations confirm that the proposed champion architecture is not just highly accurate, but showcases an incredibly robust, distributed representation system—making it perfectly primed for hardware-constrained deployments via aggressive model compression.
